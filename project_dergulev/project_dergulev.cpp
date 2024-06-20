@@ -130,6 +130,44 @@ struct Result {
     }
 };
 
+// Функция для проверки условий и вывода результата
+Result checkHand(const vector<int>& numbers) {
+    // Подсчет количества каждого числа
+    map<int, int> counts;
+    for (int num : numbers) {
+        counts[num]++;
+    }
+    // Определение максимального числа в массиве
+    int maxNumber = *max_element(numbers.begin(), numbers.end());
+
+    // Проверка условий с присвоением приоритетов
+    if (isImpossible(counts)) {
+        return { "Impossible", 1, maxNumber };
+    }
+    else if (isFourOfAKind(counts)) {
+        return{ "Four of a Kind", 2, maxNumber };
+    }
+    else if (isFullHouse(counts)) {
+        return { "Full House", 3, maxNumber };
+    }
+    else if (isStraight(numbers)) {
+        return { "Straight", 4, maxNumber };
+    }
+    else if (isThreeOfAKind(counts)) {
+        return { "Three of a Kind", 5, maxNumber };
+    }
+    else if (isTwoPairs(counts)) {
+        return { "Two Pairs", 6, maxNumber };
+    }
+    else if (isOnePair(counts)) {
+        return { "One Pair", 7, maxNumber };
+    }
+    else {
+        return { "Nothing", 8, maxNumber };
+    }
+}
+
+
 
 
 int main()
