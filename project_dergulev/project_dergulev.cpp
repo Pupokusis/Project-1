@@ -108,6 +108,15 @@ bool isTwoPairs(const map<int, int>& counts) {
     return pairs == 2;
 }
 
+// Функция для проверки наличия одной пары
+bool isOnePair(const map<int, int>& counts) {
+    for (const auto& pair : counts) {
+        if (pair.second == 2) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main()
 {
