@@ -29,6 +29,18 @@ vector<int> inputNumbers(int n) {
     return numbers;
 }
 
+// Функция для вывода массивов
+void printArrays(const set<vector<int>>& uniqueArrays) {
+    int i = 1;
+    cout << endl;
+    for (const auto& array : uniqueArrays) {
+        cout << "Игрок " << i++ << ": ";
+        for (int num : array) {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
+}
 
 int main()
 {
