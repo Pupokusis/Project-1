@@ -52,6 +52,16 @@ bool isImpossible(const map<int, int>& counts) {
     return false;
 }
 
+// Функция для проверки наличия 4 одинаковых чисел
+bool isFourOfAKind(const map<int, int>& counts) {
+    for (const auto& pair : counts) {
+        if (pair.second == 4) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 int main()
