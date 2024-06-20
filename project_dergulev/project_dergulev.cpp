@@ -167,6 +167,20 @@ Result checkHand(const vector<int>& numbers) {
     }
 }
 
+// Функция для проверки глобального распределения чисел в массивах
+bool isValidGlobalDistribution(const set<vector<int>>& arrays) {
+    map<int, int> globalCounts;
+    for (const auto& array : arrays) {
+        for (int num : array) {
+            globalCounts[num]++;
+            if (globalCounts[num] > 4) {
+                return false; // Если какое-то число встречается больше 4 раз в глобальном масштабе
+            }
+        }
+    }
+    return true;
+}
+
 
 
 
