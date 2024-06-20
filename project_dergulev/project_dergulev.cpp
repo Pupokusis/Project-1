@@ -20,6 +20,15 @@ vector<int> generateRandomNumbers(int n, int min, int max) {
     return numbers;
 }
 
+// Функция для ручного ввода массива
+vector<int> inputNumbers(int n) {
+    vector<int> numbers(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> numbers[i];
+    }
+    return numbers;
+}
+
 
 int main()
 {
