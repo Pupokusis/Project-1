@@ -245,5 +245,41 @@ void findBestHand(const set<vector<int>>& uniqueArrays) {
 
 int main()
 {
-    
+    setlocale(LC_ALL, "ru");
+    const int numArrays = 5;
+    set<vector<int>> uniqueArrays;
+
+    while (true) {
+        cout << "Меню:" << endl;
+        cout << "1. Ввод массивов случайным образом" << endl;
+        cout << "2. Ручной ввод массивов" << endl;
+        cout << "3. Вывод массивов" << endl;
+        cout << "4. Проверка условий и вывод" << endl;
+        cout << "5. Завершение программы" << endl;
+        cout << "Ваш выбор: ";
+        int choice;
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            inputArraysRandomly(uniqueArrays, numArrays);
+            break;
+        case 2:
+            inputArraysManually(uniqueArrays, numArrays);
+            break;
+        case 3:
+            printArrays(uniqueArrays);
+            break;
+        case 4:
+            findBestHand(uniqueArrays);
+            break;
+        case 5:
+            cout << "Завершение программы." << endl;
+            return 0;
+        default:
+            cout << "Неверный выбор. Попробуйте снова." << endl;
+            break;
+        }
+        cout << endl; // Пустая строка для разделения выводов разных итераций меню
+    }
+
 }
