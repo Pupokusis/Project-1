@@ -62,6 +62,19 @@ bool isFourOfAKind(const map<int, int>& counts) {
     return false;
 }
 
+// Функция для проверки наличия Full House (3 одинаковых + 2 одинаковых)
+bool isFullHouse(const map<int, int>& counts) {
+    bool three = false, two = false;
+    for (const auto& pair : counts) {
+        if (pair.second == 3) {
+            three = true;
+        }
+        if (pair.second == 2) {
+            two = true;
+        }
+    }
+    return three && two;
+}
 
 
 int main()
