@@ -97,6 +97,18 @@ bool isThreeOfAKind(const map<int, int>& counts) {
     return false;
 }
 
+// Функция для проверки наличия двух пар
+bool isTwoPairs(const map<int, int>& counts) {
+    int pairs = 0;
+    for (const auto& pair : counts) {
+        if (pair.second == 2) {
+            pairs++;
+        }
+    }
+    return pairs == 2;
+}
+
+
 int main()
 {
     
