@@ -216,6 +216,32 @@ void inputArraysManually(set<vector<int>>& uniqueArrays, const int numArrays) {
     }
 }
 
+// Функция для нахождения и вывода самого старшего условия
+void findBestHand(const set<vector<int>>& uniqueArrays) {
+    Result bestResult = { "", INT_MAX, INT_MIN };
+    int bestPlayerIndex = -1;
+    cout << endl << "Комбинации игроков:" << endl;
+    int playerIndex = 1;
+    for (const auto& hand : uniqueArrays) {
+        Result currentResult = checkHand(hand);
+        cout << "Игрок " << playerIndex << "- " << currentResult.handType << endl;
+        if (!(currentResult < bestResult)) {
+            bestResult = currentResult;
+            bestPlayerIndex = playerIndex;
+
+        }
+        playerIndex++;
+    }
+    cout << endl << "Лучшее условие у Игрока " << bestPlayerIndex << ": " << bestResult.handType << endl;
+    cout << "Комбинация: ";
+    auto it = uniqueArrays.begin();
+    advance(it, bestPlayerIndex - 1);
+    for (int num : *it) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
 
 int main()
 {
