@@ -76,6 +76,17 @@ bool isFullHouse(const map<int, int>& counts) {
     return three && two;
 }
 
+// Функция для проверки наличия Straight (5 последовательных чисел)
+bool isStraight(vector<int> numbers) {
+    sort(numbers.begin(), numbers.end());
+    for (int i = 0; i < 4; ++i) {
+        if (numbers[i] + 1 != numbers[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 int main()
 {
