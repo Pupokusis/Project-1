@@ -118,6 +118,20 @@ bool isOnePair(const map<int, int>& counts) {
     return false;
 }
 
+// Структура для хранения результата с приоритетом и максимальным числом
+struct Result {
+    string handType;
+    int priority;
+    int maxNumber;
+    bool operator<(const Result& other) const {
+        if (priority != other.priority)
+            return priority > other.priority; // Чем выше приоритет, тем лучше
+        return maxNumber < other.maxNumber;   // При равном приоритете сравниваем по максимальному числу
+    }
+};
+
+
+
 int main()
 {
     
