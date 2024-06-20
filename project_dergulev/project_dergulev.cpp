@@ -42,6 +42,18 @@ void printArrays(const set<vector<int>>& uniqueArrays) {
     }
 }
 
+// Функция для проверки наличия 5 одинаковых чисел
+bool isImpossible(const map<int, int>& counts) {
+    for (const auto& pair : counts) {
+        if (pair.second == 5) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
 int main()
 {
     
