@@ -181,6 +181,23 @@ bool isValidGlobalDistribution(const set<vector<int>>& arrays) {
     return true;
 }
 
+// Функция для ввода массивов случайным образом
+void inputArraysRandomly(set<vector<int>>& uniqueArrays, const int numArrays) {
+    uniqueArrays.clear();
+    while (uniqueArrays.size() < numArrays) {
+        vector<int> numbers;
+        // Генерация уникального массива чисел
+        do {
+            numbers = generateRandomNumbers(5, 1, 13);
+        } while (uniqueArrays.find(numbers) != uniqueArrays.end());
+        // Временное добавление массива для проверки глобального распределения
+        uniqueArrays.insert(numbers);
+        // Проверка глобального распределения
+        if (!isValidGlobalDistribution(uniqueArrays)) {
+            uniqueArrays.erase(numbers); // Удаление массива, если условие не выполнено
+        }
+    }
+}
 
 
 
