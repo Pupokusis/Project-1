@@ -87,6 +87,15 @@ bool isStraight(vector<int> numbers) {
     return true;
 }
 
+// Функция для проверки наличия 3 одинаковых чисел
+bool isThreeOfAKind(const map<int, int>& counts) {
+    for (const auto& pair : counts) {
+        if (pair.second == 3) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main()
 {
