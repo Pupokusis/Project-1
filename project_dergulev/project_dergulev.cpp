@@ -199,6 +199,22 @@ void inputArraysRandomly(set<vector<int>>& uniqueArrays, const int numArrays) {
     }
 }
 
+// Функция для ручного ввода массивов
+void inputArraysManually(set<vector<int>>& uniqueArrays, const int numArrays) {
+    uniqueArrays.clear();
+    int i = 1;
+    while (uniqueArrays.size() < numArrays) {
+        cout << "Игрок " << i++ << " - ";
+        vector<int> numbers = inputNumbers(5);
+        // Временное добавление массива для проверки глобального распределения
+        uniqueArrays.insert(numbers);
+        // Проверка глобального распределения
+        if (!isValidGlobalDistribution(uniqueArrays)) {
+            uniqueArrays.erase(numbers); // Удаление массива, если условие не выполнено
+            cout << "Введенный массив нарушает глобальное распределение чисел. Попробуйте снова." << endl;
+        }
+    }
+}
 
 
 int main()
