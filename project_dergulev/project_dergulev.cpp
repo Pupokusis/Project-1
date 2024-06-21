@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
@@ -30,7 +31,7 @@ vector<int> inputNumbers(int n) {
 }
 
 // Функция для вывода массивов
-void printArrays(const set<vector<int>>& uniqueArrays) {
+void printArrays(const vector<vector<int>>& uniqueArrays) {
     int i = 1;
     cout << endl;
     for (const auto& array : uniqueArrays) {
@@ -168,7 +169,7 @@ Result checkHand(const vector<int>& numbers) {
 }
 
 // Функция для проверки глобального распределения чисел в массивах
-bool isValidGlobalDistribution(const set<vector<int>>& arrays) {
+bool isValidGlobalDistribution(const vector<vector<int>>& arrays) {
     map<int, int> globalCounts;
     for (const auto& array : arrays) {
         for (int num : array) {
@@ -182,42 +183,42 @@ bool isValidGlobalDistribution(const set<vector<int>>& arrays) {
 }
 
 // Функция для ввода массивов случайным образом
-void inputArraysRandomly(set<vector<int>>& uniqueArrays, const int numArrays) {
+void inputArraysRandomly(vector<vector<int>>& uniqueArrays, const int numArrays) {
     uniqueArrays.clear();
     while (uniqueArrays.size() < numArrays) {
         vector<int> numbers;
         // Генерация уникального массива чисел
         do {
             numbers = generateRandomNumbers(5, 1, 13);
-        } while (uniqueArrays.find(numbers) != uniqueArrays.end());
+        } while (find(uniqueArrays.begin(), uniqueArrays.end(),numbers) != uniqueArrays.end());
         // Временное добавление массива для проверки глобального распределения
-        uniqueArrays.insert(numbers);
+        uniqueArrays.push_back(numbers);
         // Проверка глобального распределения
         if (!isValidGlobalDistribution(uniqueArrays)) {
-            uniqueArrays.erase(numbers); // Удаление массива, если условие не выполнено
+            uniqueArrays.pop_back(); // Удаление массива, если условие не выполнено
         }
     }
 }
 
 // Функция для ручного ввода массивов
-void inputArraysManually(set<vector<int>>& uniqueArrays, const int numArrays) {
+void inputArraysManually(vector<vector<int>>& uniqueArrays, const int numArrays) {
     uniqueArrays.clear();
     int i = 1;
     while (uniqueArrays.size() < numArrays) {
         cout << "Игрок " << i++ << " - ";
         vector<int> numbers = inputNumbers(5);
         // Временное добавление массива для проверки глобального распределения
-        uniqueArrays.insert(numbers);
+        uniqueArrays.push_back(numbers);
         // Проверка глобального распределения
         if (!isValidGlobalDistribution(uniqueArrays)) {
-            uniqueArrays.erase(numbers); // Удаление массива, если условие не выполнено
+            uniqueArrays.pop_back(); // Удаление массива, если условие не выполнено
             cout << "Введенный массив нарушает глобальное распределение чисел. Попробуйте снова." << endl;
         }
     }
 }
 
 // Функция для нахождения и вывода самого старшего условия
-void findBestHand(const set<vector<int>>& uniqueArrays) {
+void findBestHand(const vector<vector<int>>& uniqueArrays) {
     Result bestResult = { "", INT_MAX, INT_MIN };
     int bestPlayerIndex = -1;
     cout << endl << "Комбинации игроков:" << endl;
@@ -247,7 +248,7 @@ int main()
 {
     setlocale(LC_ALL, "ru");
     const int numArrays = 5;
-    set<vector<int>> uniqueArrays;
+    vector<vector<int>> uniqueArrays;
 
     while (true) {
         cout << "Меню:" << endl;
